@@ -62,11 +62,11 @@ const PROGRAMS = [
         blocks: [
           { type: "superset", sets: 3, rest: 90, items: [
             { name: "Glute Bridge", reps: "15 reps", cue: "Drive through the heels, squeeze at the top." },
-            { name: "Dumbbell Front Squat", reps: "15 reps", cue: "Dumbbells on the shoulders, elbows high, sit straight down." },
+            { name: "Dumbbell Front Squat", reps: "15 reps", cue: "Brace the dumbbell under your chin, not on the shoulders." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
             { name: "Cable Step-Up", reps: "12 reps each side", cue: "Whole foot on the box, drive through the heel." },
-            { name: "Reverse Lunge", reps: "12 reps each side", cue: "Step back, back knee toward the floor, chest tall." },
+            { name: "Reverse Lunge", reps: "12 reps each side", cue: "Step back, back knee toward the floor, keep your pelvis tucked." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
             { name: "Fan Bike", reps: "30 sec max effort", cue: "All out for 30 seconds." },
@@ -82,7 +82,7 @@ const PROGRAMS = [
             { name: "Reciprocal Seated Cable Press", reps: "15 reps", cue: "Press one arm while the other returns, steady rhythm." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
-            { name: "Lat Pulldown", reps: "12 reps", cue: "Pull the bar to your upper chest, elbows down and back." },
+            { name: "Lat Pulldown", reps: "12 reps", cue: "Pull the bar to your collarbone, keep your ribs down." },
             { name: "Push-Up", reps: "12 reps", cue: "Straight line from head to heels." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
@@ -102,14 +102,14 @@ const PROGRAMS = [
         blocks: [
           { type: "superset", sets: 3, rest: 90, items: [
             { name: "Dumbbell Squat to Press", reps: "15 reps", cue: "Squat, then drive up and press overhead in one move." },
-            { name: "Cable Anti-Rotation Hold", reps: "15 reps", cue: "Stand side-on to the cable, press out and resist the twist." },
+            { name: "Cable Anti-Rotation Hold", reps: "30 sec hold each side", timer: 30, sides: true, cue: "Stand side-on to the cable, press out and resist the twist." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
             { name: "Ball Slam", reps: "12 reps", cue: "Reach tall, slam the ball down hard, squat to pick it up." },
-            { name: "Plank", reps: "30 sec to 1 min", cue: "Elbows under shoulders, squeeze glutes." },
+            { name: "Plank", reps: "30 sec to 1 min", cue: "Elbows under shoulders, tuck your pelvis." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [
-            { name: "Seated Cable Row", reps: "12 to 15 reps", cue: "Chest tall, pull to your belly, squeeze the shoulder blades." },
+            { name: "Seated Cable Row", reps: "12 to 15 reps", cue: "Shoulders down, away from your ears. Pull to your belly." },
             { name: "Kettlebell Deadlift", reps: "12 to 15 reps", cue: "Hinge at the hips, flat back, stand tall." },
           ] },
           { type: "superset", sets: 3, rest: 90, items: [

@@ -171,3 +171,4 @@ textarea:focus { outline: none; border-color: var(--silver); }
 .ss-letter { width: 34px; height: 34px; border: 1px solid var(--silver); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--silver); }
 .ss-reps { font-size: 18px; font-weight: 800; margin-top: 2px; }
 .superset .cue.small { color: var(--muted); margin-top: 4px; }
+.ss-timer { margin-top: 10px; min-height: 44px; font-size: 11px; }
