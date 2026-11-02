@@ -314,7 +314,7 @@ async function runPhases(phases, title) {
     if (secs !== lastShown) {
       lastShown = secs;
       const c = el.querySelector(".clock");
-      if (c) c.textContent = fmtTime(secs);
+      if (c) { c.textContent = fmtTime(secs); c.classList.toggle("final", secs <= 3); }
       if (secs <= 3) beep(440, 0.08);
     }
   }, 200);

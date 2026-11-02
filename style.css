@@ -7,6 +7,7 @@
   --line: #2a2a2a;
   --silver: #c0c0c0;
   --silver-hi: #e6e6e6;
+  --red: #8e0f1b;
   --silver-grad: linear-gradient(135deg, #f2f2f2 0%, #a8a8a8 45%, #e0e0e0 70%, #8c8c8c 100%);
   color-scheme: dark;
 }
@@ -41,6 +42,7 @@ a { color: inherit; }
 .bar-link { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); text-decoration: none; border: 1px solid var(--line); padding: 7px 10px; }
 
 /* hero */
+.hero h2::after { content: ""; display: block; width: 40px; height: 3px; background: var(--red); margin-top: 14px; }
 .hero { padding: 28px 0 12px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
 .hero h2 { font-size: 34px; font-weight: 800; letter-spacing: -.02em; text-transform: uppercase; }
 .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .22em; color: var(--silver); font-weight: 700; }
@@ -63,7 +65,7 @@ button.card:active, a.card:active { background: var(--raised); }
 .card-title { font-weight: 800; font-size: 17px; letter-spacing: .02em; text-transform: uppercase; }
 .program-card, .day-card { border-left: 3px solid var(--line); }
 .program-card:hover, .day-card:hover { border-color: var(--silver); }
-.day-card.is-next { border-color: var(--silver); border-left-color: var(--text); }
+.day-card.is-next { border-color: var(--silver); border-left-color: var(--red); }
 .chip {
   align-self: flex-start; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--silver); border: 1px solid var(--line); padding: 4px 8px; max-width: 100%;
@@ -151,3 +153,8 @@ textarea:focus { outline: none; border-color: var(--silver); }
 .timer.rest .clock { background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .timer-controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 100%; margin-top: 18px; }
 .timer.work .btn.light { background: #000; color: #fff; }
+
+/* deep red accent: used sparingly */
+.clock.final, .timer.rest .clock.final { color: var(--red); background: none; -webkit-text-fill-color: var(--red); }
+.timer.rest .clock.final { color: #c0172a; -webkit-text-fill-color: #c0172a; }
+.ex:not(.complete) .set:not(.on):focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
