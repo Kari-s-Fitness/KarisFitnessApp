@@ -1,16 +1,9 @@
 // Bump VERSION whenever you change any file, so phones pick up the new content.
-const VERSION = "v4";
+const VERSION = "v5";
 const FILES = [
   "./",
   "index.html",
   "style.css",
-  "fonts.css",
-  "fonts/AlegreyaSans-400.woff2",
-  "fonts/AlegreyaSans-500.woff2",
-  "fonts/AlegreyaSansSC-400.woff2",
-  "fonts/AlegreyaSansSC-500.woff2",
-  "fonts/AlegreyaSansSC-700.woff2",
-  "fonts/AlegreyaSansSC-800.woff2",
   "app.js",
   "programs.js",
   "manifest.webmanifest",

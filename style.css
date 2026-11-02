@@ -8,8 +8,8 @@
   --silver: #c0c0c0;
   --silver-hi: #e6e6e6;
   --red: #6b0a12;
-  --font: "Alegreya Sans SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-text: "Alegreya Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-text: var(--font);
   --silver-grad: linear-gradient(135deg, #f2f2f2 0%, #a8a8a8 45%, #e0e0e0 70%, #8c8c8c 100%);
   color-scheme: dark;
 }
@@ -20,7 +20,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 17px/1.4 var(--font);
+  font: 16px/1.45 var(--font);
   font-variant-numeric: lining-nums;
   padding-bottom: env(safe-area-inset-bottom);
   -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@ a { color: inherit; }
 .hero h2 { font-size: 34px; font-weight: 800; letter-spacing: -.02em; text-transform: uppercase; }
 .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .22em; color: var(--silver); font-weight: 700; }
 .muted { color: var(--muted); }
-.small { font-size: 14px; }
+.small { font-size: 13px; }
 .center { text-align: center; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 
