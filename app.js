@@ -69,7 +69,7 @@ function render() {
 // ---------- screens ----------
 function header(title, back) {
   return `<header class="bar">
-    ${back ? `<a class="back" href="${back}" aria-label="Back">‹</a>` : `<span class="brand">Train Anywhere</span>`}
+    ${back ? `<a class="back" href="${back}" aria-label="Back">‹</a>` : `<span class="brand">Kari's Fitness</span>`}
     ${title ? `<h1>${esc(title)}</h1>` : ""}
     ${title === "Progress" ? "" : `<a class="bar-link" href="#/progress">Progress</a>`}
   </header>`;

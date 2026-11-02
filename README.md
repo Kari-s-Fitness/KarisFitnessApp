@@ -1,4 +1,4 @@
-# TainAnywhere
+# Kari's Fitness App
 
 A phone web app with three 3-day workout programs for clients to follow while their coach is away (Nov 8 to Nov 19). Clients open a link, add it to their home screen, pick a program and train. No login, no App Store.
 
@@ -26,6 +26,6 @@ Then open http://localhost:8000.
 
 1. Merge to `main`.
 2. In the repo, go to Settings, Pages, set Source to "Deploy from a branch", branch `main`, folder `/ (root)`.
-3. The link will be `https://laracallahan.github.io/TainAnywhere/`.
+3. The link will be `https://laracallahan.github.io/KarisFitnessApp/`.
 
 Note: GitHub Pages on a free account needs the repo to be public.
