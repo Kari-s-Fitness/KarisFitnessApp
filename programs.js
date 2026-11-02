@@ -51,48 +51,71 @@ const PROGRAMS = [
     id: "gym",
     title: "Gym Floor",
     tagline: "For a gym with dumbbells, a bench, a cable, and a cardio machine.",
-    equipment: "Dumbbells, bench, cable or lat pulldown, bike or treadmill",
+    equipment: "Dumbbells, bench, cable, TRX, kettlebell, med ball, fan bike, ski erg, leg press",
     minutes: 60,
+    warmup: { title: "90/90 PRI breath work", detail: "6 breaths for 3 rounds", minutes: 5,
+      steps: ["Lie on your back, feet on a wall, hips and knees at 90 degrees.", "Breathe in through your nose, out slowly through your mouth.", "6 breaths, rest, repeat for 3 rounds."] },
+    note: "Supersets: do A, then B, then rest. Pick the appropriate weight for your rep range.",
     days: [
       {
         title: "Day 1: Lower Body",
         blocks: [
-          { name: "Goblet Squat", sets: 4, reps: "10", rest: 90, cue: "Hold one dumbbell at your chest. Sit between your heels, chest tall.", easier: "Bodyweight squat to a bench" },
-          { name: "Dumbbell Romanian Deadlift", sets: 4, reps: "10", rest: 90, cue: "Soft knees, push hips back, dumbbells slide down your thighs. Flat back.", easier: "Lighter weights, shorter range" },
-          { name: "Reverse Lunge", sets: 3, reps: "10 each leg", rest: 75, setTime: 75, cue: "Step back, back knee lowers toward the floor, front knee over the foot.", easier: "Hold a bench for balance" },
-          { name: "Step-Up", sets: 3, reps: "10 each leg", rest: 75, setTime: 75, cue: "Whole foot on the bench. Drive through the heel.", easier: "Lower step" },
-          { name: "Dumbbell Hip Thrust", sets: 3, reps: "12", rest: 75, cue: "Upper back on the bench, dumbbell on hips. Squeeze at the top for a second.", easier: "Glute bridge on the floor" },
-          { name: "Standing Calf Raise", sets: 3, reps: "15", rest: 45, cue: "Slow up, pause, slow down. Hold dumbbells for more.", easier: "Bodyweight" },
-          { name: "Plank", sets: 3, reps: "45 sec", rest: 45, cue: "Elbows under shoulders, squeeze glutes, hips level.", easier: "Knees down" },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Glute Bridge", reps: "15 reps", cue: "Drive through the heels, squeeze at the top." },
+            { name: "Dumbbell Front Squat", reps: "15 reps", cue: "Dumbbells on the shoulders, elbows high, sit straight down." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Cable Step-Up", reps: "12 reps each side", cue: "Whole foot on the box, drive through the heel." },
+            { name: "Reverse Lunge", reps: "12 reps each side", cue: "Step back, back knee toward the floor, chest tall." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Fan Bike", reps: "30 sec max effort", cue: "All out for 30 seconds." },
+            { name: "Leg Press", reps: "12 reps", cue: "Lower until knees are at 90 degrees, don't lock out." },
+          ] },
         ],
       },
       {
         title: "Day 2: Upper Body",
         blocks: [
-          { name: "Dumbbell Bench Press", sets: 4, reps: "8 to 12", rest: 90, cue: "Shoulder blades pinched back. Lower to chest level, press up.", easier: "Push-ups on the bench" },
-          { name: "One-Arm Dumbbell Row", sets: 4, reps: "10 each side", rest: 75, setTime: 75, cue: "Hand and knee on the bench. Pull the elbow to your hip.", easier: "Lighter dumbbell" },
-          { name: "Seated Dumbbell Shoulder Press", sets: 3, reps: "10", rest: 90, cue: "Back against the bench. Press up without arching your lower back.", easier: "One arm at a time" },
-          { name: "Lat Pulldown", sets: 3, reps: "12", rest: 75, cue: "Pull the bar to your upper chest, elbows down and back.", easier: "Lighter weight" },
-          { name: "Dumbbell Biceps Curl", sets: 3, reps: "12", rest: 60, cue: "Elbows pinned to your sides, no swinging.", easier: "Lighter dumbbells" },
-          { name: "Overhead Triceps Extension", sets: 3, reps: "12", rest: 60, cue: "One dumbbell in both hands behind your head, elbows point up.", easier: "Lighter dumbbell" },
-          { name: "Dead Bug", sets: 3, reps: "10 each side", rest: 45, cue: "Lower back stays pressed into the floor the whole time.", easier: "Move legs only" },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "TRX Row", reps: "15 reps", cue: "Body straight, pull your chest to your hands." },
+            { name: "Reciprocal Seated Cable Press", reps: "15 reps", cue: "Press one arm while the other returns, steady rhythm." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Lat Pulldown", reps: "12 reps", cue: "Pull the bar to your upper chest, elbows down and back." },
+            { name: "Push-Up", reps: "12 reps", cue: "Straight line from head to heels." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Dumbbell Overhead Press", reps: "12 reps", cue: "Ribs down, press straight overhead." },
+            { name: "Dumbbell Row", reps: "12 reps", cue: "Flat back, pull the elbow to your hip." },
+          ] },
+          {
+            type: "interval",
+            title: "Ski Erg",
+            work: 30, rest: 30, rounds: 4, restBetweenRounds: 0,
+            exercises: [{ name: "Ski Erg", cue: "30 seconds max effort, 30 seconds rest." }],
+          },
         ],
       },
       {
-        title: "Day 3: Full Body and Conditioning",
+        title: "Day 3: Full Body",
         blocks: [
-          { name: "Dumbbell Thruster", sets: 4, reps: "10", rest: 90, cue: "Squat with dumbbells at your shoulders, then drive up and press overhead in one move.", easier: "Squat, then press separately" },
-          { name: "Walking Lunge", sets: 3, reps: "10 each leg", rest: 75, setTime: 75, cue: "Long steps, upright torso.", easier: "Bodyweight only" },
-          { name: "Push-Up", sets: 3, reps: "As many as you can with good form", rest: 75, cue: "Body in a straight line, chest to just above the floor.", easier: "Hands on a bench" },
-          { name: "Renegade Row", sets: 3, reps: "8 each side", rest: 75, setTime: 60, cue: "Plank on dumbbells, row one side at a time, keep hips still.", easier: "Feet wide or knees down" },
-          { name: "Dumbbell Swing", sets: 3, reps: "15", rest: 60, cue: "Hinge and snap the hips forward. The arms just guide the weight.", easier: "Lighter dumbbell" },
-          { name: "Farmer Carry", sets: 3, reps: "40 sec walk", rest: 60, setTime: 40, cue: "Heavy dumbbells at your sides, tall posture, short quick steps.", easier: "Lighter dumbbells" },
-          {
-            type: "interval",
-            title: "Finisher: Bike or Treadmill Sprints",
-            work: 30, rest: 30, rounds: 10, restBetweenRounds: 0,
-            exercises: [{ name: "Sprint", cue: "Hard for 30 sec, easy for 30 sec.", easier: "8 rounds instead of 10" }],
-          },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Dumbbell Squat to Press", reps: "15 reps", cue: "Squat, then drive up and press overhead in one move." },
+            { name: "Cable Anti-Rotation Hold", reps: "15 reps", cue: "Stand side-on to the cable, press out and resist the twist." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Ball Slam", reps: "12 reps", cue: "Reach tall, slam the ball down hard, squat to pick it up." },
+            { name: "Plank", reps: "30 sec to 1 min", cue: "Elbows under shoulders, squeeze glutes." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Seated Cable Row", reps: "12 to 15 reps", cue: "Chest tall, pull to your belly, squeeze the shoulder blades." },
+            { name: "Kettlebell Deadlift", reps: "12 to 15 reps", cue: "Hinge at the hips, flat back, stand tall." },
+          ] },
+          { type: "superset", sets: 3, rest: 90, items: [
+            { name: "Face Pull", reps: "12 to 15 reps", cue: "Rope to your forehead, elbows high and wide." },
+            { name: "Cable Triceps Extension", reps: "12 to 15 reps", cue: "Elbows pinned to your sides, push down to full lockout." },
+          ] },
         ],
       },
     ],

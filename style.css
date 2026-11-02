@@ -164,3 +164,10 @@ textarea:focus { outline: none; border-color: var(--silver); }
 /* long sentences in the regular (non small caps) cut for readability */
 .cue, .timer-inner p.small, .ex > p.muted.small, .hero .muted, .card > .muted:not(.small), .tip, .ex-list .muted, .sheet > .muted, .log p { font-family: var(--font-text); }
 .clock, .num, .target, .set { font-variant-numeric: lining-nums tabular-nums; }
+
+/* supersets */
+.ss-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.ss-item:first-of-type { border-top: 0; }
+.ss-letter { width: 34px; height: 34px; border: 1px solid var(--silver); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--silver); }
+.ss-reps { font-size: 18px; font-weight: 800; margin-top: 2px; }
+.superset .cue.small { color: var(--muted); margin-top: 4px; }
