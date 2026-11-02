@@ -145,6 +145,16 @@ function renderWorkout(p, d) {
     const label = b.type === "superset" ? b.items.map((it) => it.name).join(" + ") : b.name;
     startRest(b.rest, `${label}: set ${si + 1} of ${b.sets} done`);
   }));
+  $app.querySelectorAll("[data-hold]").forEach((el) => el.addEventListener("click", () => {
+    const [bi, ii] = el.dataset.hold.split(":").map(Number);
+    const it = day.blocks[bi].items[ii];
+    const phases = it.sides
+      ? [{ label: it.name, sub: "Left side", secs: it.timer, kind: "work", next: "Right side" },
+         { label: "Switch sides", sub: "Get set on the right side", secs: 5, kind: "rest", next: "Right side" },
+         { label: it.name, sub: "Right side", secs: it.timer, kind: "work" }]
+      : [{ label: it.name, sub: it.cue, secs: it.timer, kind: "work" }];
+    runPhases(phases, it.name);
+  }));
   $app.querySelectorAll("[data-interval]").forEach((el) => el.addEventListener("click", () => startInterval(day.blocks[+el.dataset.interval])));
   $app.querySelectorAll("[data-toggle]").forEach((el) => el.addEventListener("click", () => {
     el.nextElementSibling.hidden = !el.nextElementSibling.hidden;
@@ -179,7 +189,7 @@ function supersetCard(b, bi, doneCount) {
     <div class="row"><span class="eyebrow">Superset · ${b.sets} sets</span>${complete ? `<span class="chip accent">Done</span>` : ""}</div>
     ${b.items.map((it, i) => `<div class="ss-item">
       <span class="ss-letter">${String.fromCharCode(65 + i)}</span>
-      <div><p class="card-title">${esc(it.name)}</p><p class="ss-reps">${esc(it.reps)}</p>${it.cue ? `<p class="cue small">${esc(it.cue)}</p>` : ""}</div>
+      <div><p class="card-title">${esc(it.name)}</p><p class="ss-reps">${esc(it.reps)}</p>${it.cue ? `<p class="cue small">${esc(it.cue)}</p>` : ""}${it.timer ? `<button class="btn secondary ss-timer" data-hold="${bi}:${i}">Start timer</button>` : ""}</div>
     </div>`).join("")}
     <p class="rest">Rest ${fmtRest(b.rest)} after each set of ${b.items.map((_, i) => String.fromCharCode(65 + i)).join(" + ")}</p>
     ${setButtons(b, bi, doneCount)}
