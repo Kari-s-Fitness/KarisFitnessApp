@@ -1,5 +1,5 @@
 // Bump VERSION whenever you change any file, so phones pick up the new content.
-const VERSION = "v5";
+const VERSION = "v7";
 const FILES = [
   "./",
   "index.html",

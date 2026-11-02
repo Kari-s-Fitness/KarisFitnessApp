@@ -79,14 +79,13 @@ function renderChoose() {
   $app.innerHTML = `${header("", null)}
   <main>
     <section class="hero">
-      <h2>Your training plan from ${esc(COACH.name)}</h2>
-      <p class="muted">For ${esc(COACH.awayFrom)} to ${esc(COACH.awayTo)}. Pick the program that fits where you are. You can switch anytime.</p>
+      <h2>Your training plans</h2>
+      <p class="muted">Pick the program that fits where you are. You can switch anytime.</p>
     </section>
     ${PROGRAMS.map((p) => `
       <button class="card program-card" data-pick="${p.id}">
         <span class="card-title">${esc(p.title)}</span>
         <span class="muted">${esc(p.tagline)}</span>
-        <span class="chip">${esc(p.equipment)}</span>
       </button>`).join("")}
   </main>`;
   $app.querySelectorAll("[data-pick]").forEach((el) =>
@@ -106,10 +105,9 @@ function renderProgram(p) {
     ${p.days.map((d, i) => `
       <a class="card day-card ${i === next ? "is-next" : ""}" href="#/w/${p.id}/${i}">
         <span class="row"><span class="card-title">${esc(d.title)}</span>${i === next ? `<span class="chip accent">Up next</span>` : ""}</span>
-        <span class="muted">About ${estimateMinutes(d)} min · ${exerciseCount(d)} exercises</span>
+        <span class="muted">${p.minutes} min · ${exerciseCount(d)} exercises</span>
         <span class="muted small">Done ${timesDone(p.id, i)} ${timesDone(p.id, i) === 1 ? "time" : "times"}</span>
       </a>`).join("")}
-    <p class="tip">${esc(SCHEDULE_TIP)}</p>
     ${checkinButton()}
   </main>`;
 }
@@ -130,7 +128,7 @@ function renderWorkout(p, d) {
 
   $app.innerHTML = `${header(day.title, "#/")}
   <main>
-    <p class="muted center">About ${estimateMinutes(day)} min</p>
+    <p class="muted center">${p.minutes} min</p>
     <details class="card warmup">
       <summary><span class="card-title">Warm-up</span> <span class="muted">${WARMUP_MINUTES} min, no equipment</span></summary>
       <ul>${WARMUP.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
