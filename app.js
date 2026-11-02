@@ -105,10 +105,9 @@ function renderProgram(p) {
     ${p.days.map((d, i) => `
       <a class="card day-card ${i === next ? "is-next" : ""}" href="#/w/${p.id}/${i}">
         <span class="row"><span class="card-title">${esc(d.title)}</span>${i === next ? `<span class="chip accent">Up next</span>` : ""}</span>
-        <span class="muted">About ${estimateMinutes(d)} min · ${exerciseCount(d)} exercises</span>
+        <span class="muted">${p.minutes} min · ${exerciseCount(d)} exercises</span>
         <span class="muted small">Done ${timesDone(p.id, i)} ${timesDone(p.id, i) === 1 ? "time" : "times"}</span>
       </a>`).join("")}
-    <p class="tip">${esc(SCHEDULE_TIP)}</p>
     ${checkinButton()}
   </main>`;
 }
@@ -129,7 +128,7 @@ function renderWorkout(p, d) {
 
   $app.innerHTML = `${header(day.title, "#/")}
   <main>
-    <p class="muted center">About ${estimateMinutes(day)} min</p>
+    <p class="muted center">${p.minutes} min</p>
     <details class="card warmup">
       <summary><span class="card-title">Warm-up</span> <span class="muted">${WARMUP_MINUTES} min, no equipment</span></summary>
       <ul>${WARMUP.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>

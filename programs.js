@@ -5,9 +5,9 @@
 //  DRAFT: written by Claude as a starting point. The coach must
 //  review every exercise, set, rep and rest before clients see it.
 //
-//  Each day is built to take about 60 minutes including the
-//  5 minute warm-up. The app shows an estimate on every day so
-//  you can check the length after editing.
+//  minutes: the session length shown to clients for every day of
+//  that program (60 for Gym Floor and Calisthenics, 45 for Full
+//  Body Circuit). The content is built to fit that, warm-up included.
 //
 //  Two kinds of blocks:
 //
@@ -46,15 +46,13 @@ const WARMUP = [
 ];
 const WARMUP_MINUTES = 5;
 
-const SCHEDULE_TIP =
-  "Train 3 or 4 days a week: Day 1, Day 2, rest, Day 3, rest, then repeat. Missed a day? Just pick up where you left off.";
-
 const PROGRAMS = [
   {
     id: "gym",
     title: "Gym Floor",
     tagline: "For a gym with dumbbells, a bench, a cable, and a cardio machine.",
     equipment: "Dumbbells, bench, cable or lat pulldown, bike or treadmill",
+    minutes: 60,
     days: [
       {
         title: "Day 1: Lower Body",
@@ -104,6 +102,7 @@ const PROGRAMS = [
     title: "Calisthenics",
     tagline: "Pure bodyweight.",
     equipment: "Nothing. A sturdy chair, a bed edge and a backpack help.",
+    minutes: 60,
     days: [
       {
         title: "Day 1: Push and Core",
@@ -148,66 +147,71 @@ const PROGRAMS = [
     title: "Full Body Circuit",
     tagline: "High intensity intervals.",
     equipment: "Nothing. Space to move.",
+    minutes: 45,
     days: [
       {
-        title: "Day 1: Double Circuit",
+        title: "Day 1: Lower Body Circuit",
         blocks: [
           {
             type: "interval",
             title: "Circuit A: 4 rounds",
-            work: 40, rest: 20, rounds: 4, restBetweenRounds: 90,
+            work: 40, rest: 20, rounds: 4, restBetweenRounds: 60,
             exercises: [
               { name: "Jump Squat", cue: "Land soft, sit straight back into the next rep.", easier: "Bodyweight squat" },
-              { name: "Push-Up", cue: "Straight body, full range.", easier: "Knees or hands on a chair" },
-              { name: "High Knees", cue: "Drive knees to hip height, stay on the balls of your feet.", easier: "Marching" },
               { name: "Reverse Lunge", cue: "Alternate legs, upright torso.", easier: "Shorter steps" },
-              { name: "Mountain Climber", cue: "Hips low, fast feet.", easier: "Slow steps" },
-            ],
-          },
-          {
-            type: "interval",
-            title: "Circuit B: 4 rounds",
-            work: 40, rest: 20, rounds: 4, restBetweenRounds: 90,
-            exercises: [
-              { name: "Skater Jump", cue: "Leap side to side, land on one leg.", easier: "Side step, no jump" },
-              { name: "Plank Up-Down", cue: "Elbow plank to hand plank and back, hips still.", easier: "Knees down" },
-              { name: "Squat Thrust", cue: "Hands down, jump feet back and in, stand.", easier: "Step back and in" },
               { name: "Glute Bridge", cue: "Drive hips up, squeeze, lower with control.", easier: "Smaller range" },
-              { name: "Bicycle Crunch", cue: "Elbow toward opposite knee, slow and controlled.", easier: "Dead bug" },
+              { name: "Skater Jump", cue: "Leap side to side, land on one leg.", easier: "Side step, no jump" },
+              { name: "Wall Sit", cue: "Thighs parallel to the floor, back flat on the wall.", easier: "Sit higher" },
             ],
           },
-        ],
-      },
-      {
-        title: "Day 2: Tabata Stations",
-        blocks: [
           {
             type: "interval",
-            title: "10 stations: 8 rounds of 20 sec on, 10 sec off each",
-            order: "station",
-            work: 20, rest: 10, rounds: 8, restBetweenRounds: 90,
+            title: "Circuit B: 3 rounds",
+            work: 40, rest: 20, rounds: 3, restBetweenRounds: 60,
             exercises: [
-              { name: "Burpee", cue: "As many good reps as you can in 20 sec.", easier: "Step back, no jump" },
               { name: "Squat Pulse", cue: "Stay low, pulse an inch up and down.", easier: "Regular squats" },
-              { name: "Plank Jack", cue: "Plank position, jump feet out and in.", easier: "Step feet out and in" },
-              { name: "Alternating Reverse Lunge", cue: "Quick but controlled, upright torso.", easier: "Hold a wall" },
-              { name: "Push-Up", cue: "Full range, steady pace.", easier: "Knees down" },
-              { name: "Fast Feet", cue: "Quick tiny steps in place.", easier: "Jog in place" },
-              { name: "Glute Bridge Pulse", cue: "Hips up, pulse at the top.", easier: "Full bridges" },
-              { name: "Jumping Jack", cue: "Arms all the way overhead.", easier: "Step jacks" },
-              { name: "Russian Twist", cue: "Lean back, rotate shoulders side to side.", easier: "Feet on the floor" },
-              { name: "Mountain Climber", cue: "Hips low, drive knees fast.", easier: "Slow steps" },
+              { name: "Alternating Jump Lunge", cue: "Switch legs in the air, land soft.", easier: "Alternating reverse lunge" },
+              { name: "Lateral Lunge", cue: "Big step to the side, sit into that hip.", easier: "Smaller step" },
+              { name: "Single-Leg Glute Bridge", cue: "Switch legs halfway through.", easier: "Two-leg bridge" },
             ],
           },
         ],
       },
       {
-        title: "Day 3: Long Circuit and Finisher",
+        title: "Day 2: Upper Body Circuit",
         blocks: [
           {
             type: "interval",
-            title: "Main Circuit: 5 rounds",
-            work: 45, rest: 15, rounds: 5, restBetweenRounds: 120,
+            title: "Circuit A: 4 rounds",
+            work: 40, rest: 20, rounds: 4, restBetweenRounds: 60,
+            exercises: [
+              { name: "Push-Up", cue: "Straight body, full range.", easier: "Knees or hands on a chair" },
+              { name: "Plank Shoulder Taps", cue: "Feet wide, keep hips from rocking.", easier: "Knees down" },
+              { name: "Chair Dip", cue: "Elbows point back, shoulders down.", easier: "Bend your knees more" },
+              { name: "Mountain Climber", cue: "Hips low, fast feet.", easier: "Slow steps" },
+              { name: "Superman", cue: "Lift arms and legs, squeeze your upper back.", easier: "Lift arms only" },
+            ],
+          },
+          {
+            type: "interval",
+            title: "Circuit B: 3 rounds",
+            work: 40, rest: 20, rounds: 3, restBetweenRounds: 60,
+            exercises: [
+              { name: "Pike Push-Up", cue: "Hips high, lower your head between your hands.", easier: "Hands on a chair" },
+              { name: "Plank Up-Down", cue: "Elbow plank to hand plank and back, hips still.", easier: "Knees down" },
+              { name: "Burpee", cue: "Steady pace you can hold for 40 sec.", easier: "Step back, no jump" },
+              { name: "Reverse Snow Angel", cue: "Face down, arms sweep from hips to overhead.", easier: "Smaller range" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Day 3: Full Body Circuit",
+        blocks: [
+          {
+            type: "interval",
+            title: "Main Circuit: 4 rounds",
+            work: 45, rest: 15, rounds: 4, restBetweenRounds: 90,
             exercises: [
               { name: "Alternating Jump Lunge", cue: "Switch legs in the air, land soft.", easier: "Alternating reverse lunge" },
               { name: "Burpee", cue: "Steady pace you can hold for 45 sec.", easier: "Step back, no jump" },
@@ -219,8 +223,8 @@ const PROGRAMS = [
           },
           {
             type: "interval",
-            title: "Finisher: 3 rounds",
-            work: 30, rest: 30, rounds: 3, restBetweenRounds: 60,
+            title: "Finisher: 2 rounds",
+            work: 30, rest: 30, rounds: 2, restBetweenRounds: 60,
             exercises: [
               { name: "Tuck Jump", cue: "Knees to chest, land soft.", easier: "Jump squat" },
               { name: "Sprint in Place", cue: "All out.", easier: "High knees" },
