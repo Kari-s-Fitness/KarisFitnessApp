@@ -129,11 +129,9 @@ function renderWorkout(p, d) {
   $app.innerHTML = `${header(day.title, "#/")}
   <main>
     <p class="muted center">${p.minutes} min</p>
-    <details class="card warmup">
-      <summary><span class="card-title">Warm-up</span> <span class="muted">${WARMUP_MINUTES} min, no equipment</span></summary>
-      <ul>${WARMUP.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
-    </details>
-    ${day.blocks.map((b, bi) => b.type === "interval" ? intervalCard(b, bi) : strengthCard(b, bi, done[bi] || 0)).join("")}
+    ${warmupCard(p)}
+    ${p.note ? `<p class="tip">${esc(p.note)}</p>` : ""}
+    ${day.blocks.map((b, bi) => b.type === "interval" ? intervalCard(b, bi) : b.type === "superset" ? supersetCard(b, bi, done[bi] || 0) : strengthCard(b, bi, done[bi] || 0)).join("")}
     <button class="btn primary block" id="finish">Finish workout</button>
   </main>`;
 
@@ -144,13 +142,49 @@ function renderWorkout(p, d) {
     if (si < cur) { done[bi] = si; save(); return renderWorkout(p, d); }
     done[bi] = si + 1; save();
     renderWorkout(p, d);
-    startRest(b.rest, `${b.name}: set ${si + 1} of ${b.sets} done`);
+    const label = b.type === "superset" ? b.items.map((it) => it.name).join(" + ") : b.name;
+    startRest(b.rest, `${label}: set ${si + 1} of ${b.sets} done`);
   }));
   $app.querySelectorAll("[data-interval]").forEach((el) => el.addEventListener("click", () => startInterval(day.blocks[+el.dataset.interval])));
   $app.querySelectorAll("[data-toggle]").forEach((el) => el.addEventListener("click", () => {
     el.nextElementSibling.hidden = !el.nextElementSibling.hidden;
   }));
   document.getElementById("finish").addEventListener("click", () => finishDialog(p, d));
+}
+
+function warmupCard(p) {
+  if (p.warmup) {
+    const w = p.warmup;
+    return `<details class="card warmup" open>
+      <summary><span class="card-title">Warm-up</span> <span class="muted">${w.minutes} min</span></summary>
+      <p class="target">${esc(w.title)}</p>
+      <p class="rest">${esc(w.detail)}</p>
+      ${w.steps ? `<ul>${w.steps.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+    </details>`;
+  }
+  return `<details class="card warmup">
+    <summary><span class="card-title">Warm-up</span> <span class="muted">${WARMUP_MINUTES} min, no equipment</span></summary>
+    <ul>${WARMUP.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+  </details>`;
+}
+
+function setButtons(b, bi, doneCount) {
+  return `<div class="sets">${Array.from({ length: b.sets }, (_, si) =>
+    `<button class="set ${si < doneCount ? "on" : ""}" data-set="${bi}:${si}" aria-label="Set ${si + 1}">${si < doneCount ? "✓" : si + 1}</button>`).join("")}</div>`;
+}
+
+function supersetCard(b, bi, doneCount) {
+  const complete = doneCount >= b.sets;
+  return `<section class="card ex superset ${complete ? "complete" : ""}">
+    <div class="row"><span class="eyebrow">Superset · ${b.sets} sets</span>${complete ? `<span class="chip accent">Done</span>` : ""}</div>
+    ${b.items.map((it, i) => `<div class="ss-item">
+      <span class="ss-letter">${String.fromCharCode(65 + i)}</span>
+      <div><p class="card-title">${esc(it.name)}</p><p class="ss-reps">${esc(it.reps)}</p>${it.cue ? `<p class="cue small">${esc(it.cue)}</p>` : ""}</div>
+    </div>`).join("")}
+    <p class="rest">Rest ${fmtRest(b.rest)} after each set of ${b.items.map((_, i) => String.fromCharCode(65 + i)).join(" + ")}</p>
+    ${setButtons(b, bi, doneCount)}
+    <p class="muted small">Tap a set after finishing both exercises. The rest timer starts on its own.</p>
+  </section>`;
 }
 
 function strengthCard(b, bi, doneCount) {
