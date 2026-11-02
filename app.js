@@ -278,7 +278,7 @@ async function runPhases(phases, title) {
     el.innerHTML = `<div class="timer-inner">
       <p class="eyebrow">${esc(title)}</p>
       <p class="phase">${ph.kind === "work" ? "Go" : "Rest"}</p>
-      <h2 class="timer-name">${esc(ph.label)}</h2>
+      ${ph.kind === "work" ? `<h2 class="timer-name">${esc(ph.label)}</h2>` : ""}
       ${ph.sub ? `<p class="small">${esc(ph.sub)}</p>` : ""}
       <p class="clock">${fmtTime(secs)}</p>
       ${ph.next ? `<p class="small">Next: ${esc(ph.next)}</p>` : ""}
