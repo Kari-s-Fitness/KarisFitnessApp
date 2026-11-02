@@ -79,8 +79,8 @@ function renderChoose() {
   $app.innerHTML = `${header("", null)}
   <main>
     <section class="hero">
-      <h2>Your training plan from ${esc(COACH.name)}</h2>
-      <p class="muted">For ${esc(COACH.awayFrom)} to ${esc(COACH.awayTo)}. Pick the program that fits where you are. You can switch anytime.</p>
+      <h2>Your training plans</h2>
+      <p class="muted">Pick the program that fits where you are. You can switch anytime.</p>
     </section>
     ${PROGRAMS.map((p) => `
       <button class="card program-card" data-pick="${p.id}">
