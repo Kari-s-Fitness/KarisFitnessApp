@@ -53,7 +53,7 @@ const PROGRAMS = [
   {
     id: "gym",
     title: "Gym Floor",
-    tagline: "For a gym with dumbbells, a bench, a cable or pulldown and a cardio machine.",
+    tagline: "For a gym with dumbbells, a bench, a cable, and a cardio machine.",
     equipment: "Dumbbells, bench, cable or lat pulldown, bike or treadmill",
     days: [
       {
@@ -102,7 +102,7 @@ const PROGRAMS = [
   {
     id: "calisthenics",
     title: "Calisthenics",
-    tagline: "Pure bodyweight. A hotel room, a park or a living room is enough.",
+    tagline: "Pure bodyweight.",
     equipment: "Nothing. A sturdy chair, a bed edge and a backpack help.",
     days: [
       {
@@ -146,7 +146,7 @@ const PROGRAMS = [
   {
     id: "circuit",
     title: "Full Body Circuit",
-    tagline: "High intensity intervals with real rest between rounds. The timer runs everything.",
+    tagline: "High intensity intervals.",
     equipment: "Nothing. Space to move.",
     days: [
       {

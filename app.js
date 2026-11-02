@@ -86,7 +86,6 @@ function renderChoose() {
       <button class="card program-card" data-pick="${p.id}">
         <span class="card-title">${esc(p.title)}</span>
         <span class="muted">${esc(p.tagline)}</span>
-        <span class="chip">${esc(p.equipment)}</span>
       </button>`).join("")}
   </main>`;
   $app.querySelectorAll("[data-pick]").forEach((el) =>
