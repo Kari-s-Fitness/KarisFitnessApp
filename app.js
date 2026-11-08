@@ -62,7 +62,7 @@ function render() {
   if (parts[0] === "w" && program(parts[1]) && program(parts[1]).days[+parts[2]]) return renderWorkout(program(parts[1]), +parts[2]);
   if (parts[0] === "progress") return renderProgress();
   if (parts[0] === "choose") return renderChoose();
-  if (state.programId && program(state.programId)) return renderProgram(program(state.programId));
+  if (parts[0] === "p" && state.programId && program(state.programId)) return renderProgram(program(state.programId));
   return renderChoose();
 }
 
@@ -89,7 +89,7 @@ function renderChoose() {
       </button>`).join("")}
   </main>`;
   $app.querySelectorAll("[data-pick]").forEach((el) =>
-    el.addEventListener("click", () => { state.programId = el.dataset.pick; save(); go("#/"); render(); }));
+    el.addEventListener("click", () => { state.programId = el.dataset.pick; save(); go("#/p"); render(); }));
 }
 
 function renderProgram(p) {
@@ -126,7 +126,7 @@ function renderWorkout(p, d) {
   for (const k of Object.keys(state.sets)) if (!k.startsWith(todayKey())) delete state.sets[k];
   const done = state.sets[key] || (state.sets[key] = {});
 
-  $app.innerHTML = `${header(day.title, "#/")}
+  $app.innerHTML = `${header(day.title, "#/p")}
   <main>
     <p class="muted center">${p.minutes} min</p>
     ${warmupCard(p)}
@@ -258,7 +258,7 @@ function renderProgress() {
   const weekAgo = Date.now() - 7 * 864e5;
   const thisWeek = state.log.filter((l) => new Date(l.date).getTime() > weekAgo).length;
   const days = new Set(state.log.map((l) => l.date.slice(0, 10))).size;
-  $app.innerHTML = `${header("Progress", "#/")}
+  $app.innerHTML = `${header("Progress", "#/p")}
   <main>
     <div class="stats">
       <div class="stat"><span class="num">${state.log.length}</span><span class="muted small">workouts</span></div>
