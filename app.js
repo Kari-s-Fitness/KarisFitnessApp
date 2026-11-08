@@ -186,14 +186,14 @@ function setButtons(b, bi, doneCount) {
 function supersetCard(b, bi, doneCount) {
   const complete = doneCount >= b.sets;
   return `<section class="card ex superset ${complete ? "complete" : ""}">
-    <div class="row"><span class="eyebrow">Superset · ${b.sets} sets</span>${complete ? `<span class="chip accent">Done</span>` : ""}</div>
+    <div class="row"><span class="eyebrow">${b.items.length > 2 ? "Tri-set" : "Superset"} · ${b.sets} sets</span>${complete ? `<span class="chip accent">Done</span>` : ""}</div>
     ${b.items.map((it, i) => `<div class="ss-item">
       <span class="ss-letter">${String.fromCharCode(65 + i)}</span>
       <div><p class="card-title">${esc(it.name)}</p><p class="ss-reps">${esc(it.reps)}</p>${it.cue ? `<p class="cue small">${esc(it.cue)}</p>` : ""}${it.timer ? `<button class="btn secondary ss-timer" data-hold="${bi}:${i}">Start timer</button>` : ""}</div>
     </div>`).join("")}
-    <p class="rest">Rest ${fmtRest(b.rest)} after each set of ${b.items.map((_, i) => String.fromCharCode(65 + i)).join(" + ")}</p>
+    <p class="rest">Rest ${b.restLabel || fmtRest(b.rest)} after each set of ${b.items.map((_, i) => String.fromCharCode(65 + i)).join(" + ")}</p>
     ${setButtons(b, bi, doneCount)}
-    <p class="muted small">Tap a set after finishing both exercises. The rest timer starts on its own.</p>
+    <p class="muted small">Tap a set after finishing ${b.items.length > 2 ? "all three" : "both"} exercises. The rest timer starts on its own.</p>
   </section>`;
 }
 

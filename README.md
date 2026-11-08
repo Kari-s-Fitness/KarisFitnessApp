@@ -4,7 +4,7 @@ A phone web app with three 3-day workout programs for clients to follow while th
 
 ## What clients get
 
-- **Three programs:** Gym Floor, Calisthenics, Full Body Circuit. Gym Floor and Calisthenics days are 60 minutes, Full Body Circuit days are 45, warm-up included.
+- **Two programs:** Gym Floor and Calisthenics, 3 days each, 60 minutes a day with the warm-up included.
 - **Workout screen:** sets, reps, rest time and a form cue for every exercise, plus an easier option.
 - **Timers:** tapping a finished set starts the rest timer. Interval blocks run on a full screen timer with beeps.
 - **Progress:** finishing a workout saves it with an effort rating and a note. Saved on the client's phone only.
